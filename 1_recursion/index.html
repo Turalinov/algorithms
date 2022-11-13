@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    "use strict";
+
+    //Задача 
+    // у нас имеется коробочка, которая содержит коробочки, и эти коробочки тоже содержат другие коробочки 
+    // нам нужно найти ключ в одной из этих коробочек
+    
+    let boxes = [
+      {
+        box: '1'
+      },
+      {
+        box: '2'
+      },
+      {
+        box: '3'
+      },
+      {
+        box: '4'
+      },
+      [
+        {
+          box: '5'
+        },
+        {
+          box: '6'
+        },
+        [
+          {
+            box: '7'
+          },
+          {
+            box: '8',
+          },
+          [
+            {
+              box: '9',
+              key: 1
+            },
+            {
+              box: '10'
+            },
+          ],
+        ],
+      ],
+      {
+        box: '11'
+      },
+
+    ];
+
+    // let boxes = {
+    //   box: 10,
+    //   key: 1
+    // };
+
+    // итеративный
+    function findKey(boxes) {
+      let i = 0;
+
+      while (i < boxes.length) {
+        if (Array.isArray(boxes[i])) {
+          boxes.push(...boxes[i])
+        } else {
+          if ( boxes[i].key && boxes[i].key == 1) {
+            return `ключ ${boxes[i].key} находится в коробочке ${boxes[i].box}`;
+          }
+        }
+
+        i++;
+      }
+    }
+
+    console.log(findKey(boxes))
+
+    //рекурсия
+    // function findKey(boxes) {
+    //   if (!(Array.isArray(boxes))) {
+    //     if (boxes.key && boxes.key == 1) {
+    //       return `ключ ${boxes.key} находится в коробочке ${boxes.box}`;
+    //     }
+    //   } else {
+    //     for (let i = 0; i < boxes.length; i++ ){ 
+    //       let str = findKey(boxes[i]);
+    //       if (str) {
+    //         return str;
+    //       }
+    //     }
+    //   }
+    // }
+
+
+
+
+  </script>
+  
+</body>
+</html>
